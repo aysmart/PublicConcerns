@@ -1,0 +1,100 @@
+@model Users
+@{
+    ViewData["Title"] = "Sign Up";
+}
+
+      <!--Main Body content -->
+      <section class="pt-5 pb-5" id="page-heard">
+        <div class="container">
+          <h1 id="cause-head">Sign Up</h1>
+        </div>
+      </section>
+
+      <section class="pt-5 pb-5">
+        <div class="container">
+          <form class="row g-3" asp-action="register" method="post">
+            <div class="col-md-4">
+              <label  asp-for="Name" class="form-label">Full Name</label>
+              <input type="text" class="form-control" asp-for="Name" id="validationServer02" value="" required>
+              <div class="valid-feedback">
+                Looks good!
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label asp-for="UserEmail" class="form-label">Email</label>
+              <input type="email" class="form-control" asp-for="UserEmail" value="" required>
+              <span asp-validation-for="UserEmail" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+              <label asp-for="UserCity" class="form-label">City</label>
+              <input type="text" class="form-control" asp-for="UserCity" id="validationServer02" value="" required>
+              <div class="valid-feedback">
+                Looks good!
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label asp-for="UserState" class="form-label">State</label>
+              <input type="text" class="form-control" asp-for="UserState" id="validationServer02" value="" required>
+              <div class="valid-feedback">
+                Looks good!
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label asp-for="UserCountry" class="form-label">Country</label>
+              <input type="text" class="form-control" asp-for="UserCountry" id="validationServer02" value="" required>
+              <div class="valid-feedback">
+                Looks good!
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label asp-for="UserName" class="form-label">Username</label>
+              <div class="input-group">
+                <span class="input-group-text" id="inputGroupPrepend3">@@</span>
+                <input type="text" class="form-control" asp-for="UserName" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required><br />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+                <input type="text" class="form-control" asp-for="EmailConfirm" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" value="0" hidden required>
+                <input type="text" class="form-control" asp-for="UserPhoto" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" value="~/lib/images/img_avatar.png" hidden required>
+                <input type="text" class="form-control" asp-for="AboutMe" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" value="Me" hidden required>
+                <input type="text" class="form-control" asp-for="UserPhone" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" value="080" hidden required>
+                @*<input type="text" class="form-control" asp-for="RegDate" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" value="03/26/2022" hidden required>*@
+                <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                  Please choose a username.
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <label class="form-label">Password</label>
+              <input type="password" class="form-control" asp-for="UserPassword" id="confirmPass1" aria-describedby="validationServer083Feedback" required>
+              <span id="StrengthDisp" class="badge displayBadge">Weak</span>
+            </div>
+            <div class="col-md-3" >
+              <label  asp-for="UserPassword" class="form-label">Verify Password</label>
+              <input type="password" asp-for="UserPassword" class="form-control" id="confirmPass2" aria-describedby="validationServer03Feedback" required>
+              <span id="StrengthDisp2" class="badge displayBadge">Weak</span>
+              @*<div  class="text-danger" id="showpass"></div>*@
+            </div>
+            <div class="col-12">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="invalidCheck3" aria-describedby="invalidCheck3Feedback" required>
+                <label class="form-check-label" for="invalidCheck3">
+                  Agree to terms and conditions
+                </label>
+                <div id="invalidCheck3Feedback" class="invalid-feedback">
+                  You must agree before submitting.
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+              <button id="signupBtn" class="btn btn-primary" type="submit">Sign Up</button>
+              <a asp-controller="Home" asp-action="login" class="btn btn-danger fw-bold" type="submit">Back To Login</a>
+            </div>
+          </form>
+        </div>
+      </section>
+
+     @* <div class="has-error">
+                  @Html.ValidationMessage("UserEmail")
+              </div>*@
+      <!--End of Main Body content -->
+
+  

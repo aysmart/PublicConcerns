@@ -1,0 +1,127 @@
+@model Causes
+
+@{
+    ViewData["Title"] = "Cause Dashboard";
+    var signatureInfo = ViewBag.signature as CourseWorkTwoNeyo.Models.databaseVM2;
+}
+      <!--Main Body content -->
+      <section class="pt-5 pb-5">
+        <div class="container">
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" asp-controller="User" asp-action="viewCause" asp-route-id="@ViewBag.causeId"><i class="fa fa-eye"></i> View Cause</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" asp-controller="User" asp-action="newUpdate" asp-route-id="@ViewBag.causeId"><i class="bi bi-bookmark-plus-fill"></i> Post Update</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" asp-controller="User" asp-action="editCause" asp-route-id="@ViewBag.causeId"><i class="fa fa-edit"></i> Edit Cause</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" asp-controller="User" asp-action="comments" asp-route-id="@ViewBag.causeId"><i class="fa fa-comment"></i> Reason For Signing </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" asp-controller="User" asp-action="victory" asp-route-id="@ViewBag.causeId"><i class="fa fa-flag"></i> Declare Victory</a>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="pt-5 pb-5">
+        <div class="container">
+          <div class="row">
+            <div class="column col-md-6">
+              <div class="col-md-10">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="progress">
+                                @{
+                                    int goal = (Model.SigGoal - Model.SigCount);
+                                    double SigPercent = ((double)Model.SigCount / (double)Model.SigGoal) * 100;
+                                    int SigPercent1 = (int) Math.Ceiling(SigPercent);
+                                    //@SigPercent1;
+                                } 
+                      <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{@SigPercent1}%" aria-valuemin="0" aria-valuemax="100" style="width:@SigPercent1%">@Html.DisplayFor(x => x.SigCount) of @Html.DisplayFor(x => x.SigGoal)</div>
+                    </div>
+                    <p class="supnum"><span class="numbss">@Html.DisplayFor(x => x.SigCount)</span><span class="sup-text"> Supporters</span></p>
+                      <p class="more-text">Only <b>
+                                    @goal
+                             more</b> supporters to the next goal!</p>
+                    <p class="card-text"></p>
+                    <hr>
+                    <p class="supfoot"><i class="fa fa-eye"></i> @Html.DisplayFor(x => x.ViewCount) views</p> 
+                    <hr>
+                    <p class="supfoot"><i class="fa fa-share-square"></i> @Html.DisplayFor(x => x.ShareCount) Shares</p> 
+                  </div>
+                </div>
+              </div><br>
+              <div class="col-md-10"> 
+                <div class="card">
+                  <div class="card-body">
+                    <h3 class="card-title"><b>Recent Supporters</b></h3>
+                    <hr>
+                    @foreach(var obj in ViewBag.signature)
+                    {
+                        @:<div class="col-sm-12">
+                         <div class="" style="float:left">
+                        <img src="@obj.userList.UserPhoto" alt="Avatar" class="avatar">
+                      </div>
+                      @:<div style="float:left">
+                        @:<span class="suptext2">@obj.userList.Name<br></b><span class="supsigned">signed <time class="timeago" datetime="@obj.signatureList.SignDate"></span></span>
+                      @:</div>
+                      @:</div><br><br><br>
+                    }
+                    <hr>
+                    <div class="col-md-12 position-relative">
+                      <select class="form-select" id="validationTooltip04">
+                        <option selected  value="">Signatures (Spreadsheeet)</option>
+                        <option>Comments (Spreadsheeet)</option>
+                      </select>
+                      <div class="invalid-tooltip">
+                        Please select a valid state.
+                      </div>
+                    </div>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a class="btn btn-outline-dark"><b>Get List</b></a> 
+                  </div>
+                </div>
+              </div><br>
+            </div>
+         
+            <div class="column col-md-6">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-body">
+                    <h2><b>Share Your Cause</b></h2>
+                    <p>Successful cause starters share their petition a couple of times. Try to share on as many platform as you can, and be sure to ask others to sign and share your cause to build momentum!</p>
+                    <div class="justify-content-center align-items-center">
+                      <div class="col-md-12" >
+                          <div class="search"> <i class="fa fa-link"></i> <input type="text" id="causeLink" class="form-control" readonly value="https://localhost:7047/Causes/viewCause/@Model.Id"> <button class="btn btn-dark" id="shareLinkBtn" onclick="copyLink()">Copy</button> </div>
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="share-socials">
+                      <a target="_blank" href="https://www.facebook.com/sharer.php?u=https://localhost:7047/Causes/viewCause/@Model.Id&t=@Model.Title" class="btn btn-primary"><i class="fa fa-facebook"></i></a>
+                      <a target="_blank" href="https://plus.google.com/share?url=https://localhost:7047/Causes/viewCause/@Model.Id&text=@Model.Title" class="btn btn-danger"><i class="fa fa-google-plus"></i></a>
+                      <a target="_blank" href="https://twitter.com/share?url=https://localhost:7047/Causes/viewCause/@Model.Id&text=@Model.Title" class="btn btn-info"><i class="fa fa-twitter"></i></a>
+                      <a target="_blank" href="mailto:?subject=@Model.Title&amp;body=Check out this site https://localhost:7047/Causes/viewCause/@Model.Id." class="btn btn-primary"><i class="fa fa-envelope"></i></a>
+                      <a target="_blank" href="https://api.whatsapp.com/send?text=@Model.Title https://localhost:7047/Causes/viewCause/@Model.Id" class="btn btn-success"><i class="bi bi-whatsapp"></i></a>
+                      <a target="_blank" href="https://www.linkedin.com/shareArticle?url=https://localhost:7047/Causes/viewCause/@Model.Id&title=@Model.Title" class="btn btn-primary"><i class="fa fa-linkedin"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div><br>
+              <div class="col-md-12"> 
+                <div class="card">
+                  <div class="card-body">
+                    <h2><b>Update your supporters</b></h2>
+                    <p>Send an update to share news and developments on your cause, media coverage, to say thanks, or ask for help you need to win! Updates that you post will appear on your cause and be emailed to your supporters.</p>
+                    <a asp-controller="User" asp-action="newUpdate" asp-route-id="@Model.Id" type="button" class="btn btn-outline-danger"><b>Post Update</b></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--End of Main Body content -->

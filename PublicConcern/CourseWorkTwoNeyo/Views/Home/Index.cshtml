@@ -1,0 +1,137 @@
+@model IEnumerable<Causes>
+@{
+    ViewData["Title"] = "Home";
+    int count = 0;
+}
+
+      <!--Home page content -->
+      <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="10000">
+            <img src="~/lib/images/slide2.jpg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Your voice can be heard by the entire public!</h5>
+              <a href="#" class="btn btn-primary">Start A Cause Now</a>
+            </div>
+          </div>
+          <div class="carousel-item" data-bs-interval="2000">
+            <img src="~/lib/images/slide2.jpg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Your voice can be heard by the entire public!</h5>
+                <a href="#" class="btn btn-primary">Start A Cause Now</a>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="~/lib/images/slide2.jpg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Your voice can be heard by the entire public!</h5>
+                <a href="#" class="btn btn-primary">Start A Cause Now</a>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      
+      <div class="container">
+          <h3 class="center"></h3>
+      </div>
+
+      <section class="pt-5 pb-5" id="prevailed">
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <h3 class="mb-3">VICTORIES</h3>
+                </div>
+                <div class="col-6 text-right">
+                    <a class="btn btn-primary mb-3 mr-1" href="#carouselExampleIndicators2" role="button" data-slide="prev">
+                        <i class="fa fa-arrow-left"></i>
+                    </a>
+                    <a class="btn btn-primary mb-3 " href="#carouselExampleIndicators2" role="button" data-slide="next">
+                        <i class="fa fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="col-12">
+                    <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
+    
+                        <div class="carousel-inner">
+                             
+                            <div class="carousel-item active">
+                                <div class="row">
+                                    @foreach(var obj in ViewBag.victory)
+                                {
+                                    count = ViewBag.victory.IndexOf(obj);
+                                    
+                                    if (count % 4 == 3)
+                                    {
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        <div class="col-md-4 mb-3">
+                                            <div class="card">
+                                                <a class="remove-decor" asp-controller="Causes" asp-action="viewCause" asp-route-id="@obj.causeList.Id">
+                                                <img src="@obj.causeList.CauseBanner" class="card-img-top" height="50%" alt="cause 1">
+                                                <div class="card-body">
+                                                <h5 class="card-title">@obj.causeList.Title</h5>
+                                                <p class="card-text">@obj.causeList.PlainContent.Substring(0 , 200)...</p>
+                                                <h6><b>@obj.userList.Name</b></h6>
+                                                </div>
+                                            </a>
+                                            <div class="card-footer">
+                                                <small class="text-muted" id="card-footer-left"> <i class="fa fa-users"></i> @obj.causeList.SigCount supporters</small>
+                                                <small class="text-muted"id="card-footer-right"><i class="fa fa-clock-o"></i> Last updated <time class="timeago" datetime="@obj.causeList.PostDate"></time></small>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        }}
+                                </div>
+                            </div>
+
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
+    </section>
+
+    <section class="pt-5 pb-5">
+        <div class="container">
+            <h4>What's happening on PublicConcern</h4>
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+                @*Populates Cause on the home Page*@
+                @foreach(var obj in ViewBag.causes)
+              {
+                <div class="col">
+                  <div class="card">
+                    <a class="remove-decor" asp-controller="Causes" asp-action="viewCause" asp-route-id="@obj.causeList.Id">
+                        <img src="@obj.causeList.CauseBanner" class="card-img-top" height="50%" alt="cause 1">
+                        <div class="card-body">
+                        <h5 class="card-title">@obj.causeList.Title</h5>
+                        <p class="card-text">@obj.causeList.PlainContent.Substring(0 , 200)...</p>
+                        <h6><b>@obj.userList.Name</b></h6>
+                        </div>
+                    </a>
+                    <div class="card-footer">
+                        <small class="text-muted" id="card-footer-left"> <i class="fa fa-users"></i> @obj.causeList.SigCount supporters</small>
+                        <small class="text-muted"id="card-footer-right"><i class="fa fa-clock-o"></i> Last updated <time class="timeago" datetime="@obj.causeList.PostDate"></time></small>
+                    </div>
+                </div>
+                </div>  
+            }
+            <br>
+            <input type="submit" value="Show More" id="spanbtn"/>
+        </div>
+    </section>
+

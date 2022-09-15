@@ -1,0 +1,114 @@
+@model Causes
+@{
+    ViewData["Title"] = "Start A Cause";
+}
+
+      <!--Main Body content -->
+      <section class="pt-5 pb-5" id="page-heard">
+        <div class="container">
+          <h1 id="cause-head">Write A Causes</h1>
+        </div>
+      </section>
+      <!--End of Main Body content -->
+      
+      
+      <section class="pt-5 pb-5">
+        <div class="container">
+          <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+          <form class="row g-3" method="post">
+            <div class="col-md-12 position-relative">
+              <label asp-for="Title" class="form-label"><b>Cause Title</b></label>
+              <input asp-for="Title" required type="text" class="form-control" id="validationTooltip01"  placeholder="eg. Soro Soke: We Say No To Police Brutality">
+              <div class="valid-tooltip">
+                Looks good!
+              </div>
+            </div>
+            <div class="col-md-12 position-relative">
+              <label asp-for="Targeted" class="form-label"><b>Your Objection Target</b><p>Organizations, governments, policies, etc.</p></label>
+              <input type="text" class="form-control" id="testy" asp-for="Targeted" placeholder="eg. Nigerian Police Force">
+              <div class="valid-tooltip">
+                Looks good!
+              </div>
+            </div>
+            <div class="col-md-12 position-relative">
+              <label asp-for="Focus" for="validationTooltip04" class="form-label">Cause Focus</label>
+              <select asp-for="Focus" class="form-select" id="validationTooltip04" required>
+                <option  value="Creative Tax Avoidance">Creative Tax Avoidance</option>
+                <option selected  value="Unfair Employment Practices">Unfair Employment Practices</option>
+                <option value="Racism">Racism</option>
+                <option  value="Disregard of Environmental Impacts">Disregard of Environmental Impacts</option>
+                <option  value="Others">Others</option>
+              </select>
+              <div class="invalid-tooltip">
+                Please select a valid state.
+              </div>
+            </div>
+            <div class="" id="other-fill"></div>
+            <div class="col-md-12 position-relative">
+              <label asp-for="Content" class="form-label"><b>Tell your story</b><p>explain the cause in details and why you care about it.</p></label>
+              <textarea  id="editor" asp-for="Content" class="form-control"></textarea>
+              <div class="valid-tooltip">
+                Looks good!
+              </div>
+            </div>
+
+            <div class="col-xs-12">
+              <label class="cabinet center-block">
+                <b>Add a photo (Optional)</b>
+                <p>Petitions with a photo get six times more signatures than petitions without a photo.</p>
+                <figure>
+                  <img src="~/lib/images/img-demo.jpg" class="gambar img-responsive img-thumbnail" id="item-img-output" />
+                  <figcaption><i class="fa fa-camera"></i></figcaption>
+                </figure>
+                <input type="file" class="item-img file center-block" id="item-img" name="file_photo"/>
+              </label>
+            </div>
+            <div class="image-center">
+              <button type="reset" class="btn btn-danger">Reset</button>
+              <button type="submit" class="btn btn-danger">Publish Cause</button>
+            </div>
+            <textarea asp-for="Content" id="displayContent" required hidden></textarea>
+            <textarea asp-for="CauseBanner" id="CauseBannerBox" hidden required></textarea>
+            <textarea asp-for="PlainContent" id="displayContent2" hidden required></textarea>
+            <input type="text" asp-for="Category" hidden value="Recent" />
+          </form>
+          </div>
+        </div>
+
+        
+
+     </section>
+
+    <!-- Bootstrap Modal -->
+    <div class="modal fade" id="cropImagePop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">
+          <?=multiLanguage( "Edit Foto" , "Edit Photo" )?></h4>
+      </div>
+      <div class="modal-body">
+            <div id="upload-demo" class="center-block"></div>
+      </div>
+       <div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+<button type="button" id="cropImageBtn" class="btn btn-primary">Crop</button>
+</div>
+        </div>
+      </div>
+    </div>
+  <!-- End of Modals -->  
+
+     <!-- Script to Activate the Carousel -->
+     <script>
+        $('#validationTooltip04').on('change', function(){
+          //alert("posps")hh
+          if (this.value=="Others"){
+            $('#other-fill').html('<div class="col-md-12 position-relative"><label for="validationTooltip01" class="form-label"><b>If Others, Then Specify</b></label><input type="text" class="form-control" id="validationTooltip01" value="Common Wealth Policies" required><div class="valid-tooltip">Looks good!</div></div>');
+          }
+          else{
+            $('#other-fill').html("");
+          }
+        })
+        </script>

@@ -1,0 +1,155 @@
+@using CourseWorkTwoNeyo.Models
+@model CourseWorkTwoNeyo.Models.databaseVM2
+@{
+    ViewData["Title"] = "User Account";
+
+}
+    @foreach(var obj in Model.CausesSigned2)
+    {
+        
+   
+    }
+
+    <br />
+   @*  @foreach(var item in Model)
+    {
+        @item.userList.Name
+        @item.causeList.Title
+        <br />
+    }*@
+      <!--Main Body content -->
+      <section class="pt-5 pb-5" id="page-user-head">
+        <div class="container">
+          <h1 id="cause-head">
+              @foreach(var obj in Model.userList2)
+            {
+              <!--Grid column-->
+          <div class="mb-4">    
+            <img class="rounded-circle z-depth-2" alt="100x100" width="100" height="100" src="@obj.UserPhoto"
+          data-holder-rendered="true">
+          </div>
+      <!--Grid column-->
+            
+                @obj.Name
+            
+             <br>
+            <i class="fa fa-location-dark" id="user-locale"> @obj.UserCountry</i><br />
+            
+            <a asp-controller="User" asp-action="settings" asp-route-id="@obj.Id" class="btn btn-dark"><i class="fa fa-gear"></i> Settings</a>
+            }
+          </h1>
+        </div>
+      </section>
+
+      <section class="pt-5 pb-5" id="">
+        <div class="container">
+          <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+              <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Started (@Model.CausesStarted2.Count()) </button>
+              <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Signed (@Model.CausesSigned2.Count())</button>
+            </div>
+          </nav>
+          <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+              <section class="pt-5 pb-5">
+               <div class="container">
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+                @*Populates Cause on the home Page*@
+                @foreach(var obj in Model.CausesStarted2)
+              {
+                <div class="col">
+                  <div class="card">
+                    <a class="remove-decor" asp-controller="User" asp-action="causeDashboard" asp-route-id="@obj.causeList.Id">
+                        <img src="@obj.causeList.CauseBanner" class="card-img-top" height="50%" alt="cause 1">
+                        <div class="card-body">
+                        <h5 class="card-title">@obj.causeList.Title</h5>
+                        <p class="card-text">@obj.causeList.PlainContent.Substring(0 , 200)...</p>
+                        <h6><b>@obj.userList.Name</b></h6>
+                        </div>
+                    </a>
+                    <div class="card-footer">
+                        <small class="text-muted" id="card-footer-left"> <i class="fa fa-users"></i> @obj.causeList.SigCount supporters</small>
+                        <small class="text-muted"id="card-footer-right"><i class="fa fa-clock-o"></i> Last updated <time class="timeago" datetime="@obj.causeList.PostDate"></time></small>
+                    </div>
+                </div>
+                </div>  
+            }
+            <br>
+            <input type="submit" value="Show More" id="spanbtn"/>
+        </div>
+    </section>
+            </div>
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+              <section class="pt-5 pb-5">
+               <div class="container">
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+                @*Populates Cause on the home Page*@
+                @foreach(var obj1 in Model.CausesSigned2)
+              {
+                <div class="col">
+                  <div class="card">
+                    <a class="remove-decor" asp-controller="Causes" asp-action="viewCause" asp-route-id="@obj1.causeList.Id">
+                        <img src="@obj1.causeList.CauseBanner" class="card-img-top" height="50%" alt="cause 1">
+                        <div class="card-body">
+                        <h5 class="card-title">@obj1.causeList.Title</h5>
+                        <p class="card-text">@obj1.causeList.PlainContent.Substring(0 , 200)...</p>
+                        <h6><b>@obj1.userList.Name</b></h6>
+                        </div>
+                    </a>
+                    <div class="card-footer">
+                        <small class="text-muted" id="card-footer-left"> <i class="fa fa-users"></i> @obj1.causeList.SigCount supporters</small>
+                        <small class="text-muted"id="card-footer-right"><i class="fa fa-clock-o"></i> Last updated <time class="timeago" datetime="@obj1.causeList.PostDate"></time></small>
+                    </div>
+                </div>
+                </div>  
+            }
+            <br>
+            <input type="submit" value="Show More" id="spanbtn"/>
+        </div>
+    </section>
+            </div>
+            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+              <section class="pt-5 pb-5">
+                <div class="container">
+                    <div class="row row-cols-1 row-cols-md-2 g-4">
+                        <div class="col">
+                          <div class="card">
+                            <a href="#" class="remove-decor">
+                                <img src="~/lib/images/cause1.jpg" class="card-img-top" height="50%" alt="cause 1">
+                                <div class="card-body">
+                                <h5 class="card-title">President Buhari Sign The Electoral Bill NOW</h5>
+                                <p class="card-text">We call on President Buhari to immediately sign the Electoral bill into law to enable INEC to adjust and issue a Notice of Election and release the timetable and schedule of activities for the 2023 general election...</p>
+                                <h6><b>Akinbode Akinniyi Jeremiah</b></h6>
+                                </div>
+                            </a>
+                            <div class="card-footer">
+                                <small class="text-muted" id="card-footer-left"> <i class="fa fa-users"></i> 2,034 supporters</small>
+                                <small class="text-muted"id="card-footer-right"><i class="fa fa-clock-o"></i> Last updated 3 mins ago</small>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="col">
+                          <div class="card">
+                            <a href="#" class="remove-decor">
+                                <img src="~/lib/images/cause2.jpg" class="card-img-top" alt="cause 2">
+                                <div class="card-body">
+                                <h5 class="card-title">Stop Messing Up With Our Lands With Oil Spillages</h5>
+                                <p class="card-text">You might remember the Exxon Valdez spill in Alaska in 1989. If not, this was one of the worst oil spills in history. In the Niger Delta there has been an Exxon Valdez spill every year for 50 years. This gives...</p>
+                                <h6><b>Ayorinde G. Smart</b></h6>
+                                </div>
+                            </a>
+                            <div class="card-footer">
+                                <small class="text-muted" id="card-footer-left"> <i class="fa fa-users"></i> 5,234 supporters</small>
+                                <small class="text-muted"id="card-footer-right"><i class="fa fa-clock-o"></i> Last updated 5 hours ago</small>
+                            </div>
+                          </div>
+                        </div>
+                    </div><br>
+                </div>
+            </section>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--End of Main Body content -->
+    

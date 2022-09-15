@@ -1,0 +1,198 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CourseWorkTwoNeyo</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/CourseWorkTwo.styles.css" asp-append-version="true" />
+    <link href="~/lib/font-awesome.css" rel="stylesheet" asp-append-version="true">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link href="~/lib/themify-icon.css" rel="stylesheet" asp-append-version="true">
+    <link href="~/lib/croppie/css/croppie.css" rel="stylesheet" asp-append-version="true">
+    <!-- normalize CSS
+		============================================ -->
+    <link rel="stylesheet" href="~/lib/data-table/css/bootstrap-table.css">
+    <link rel="stylesheet" href="~/lib/data-table/css/bootstrap-editable.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><b>PublicConcern</b></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" asp-area="" asp-controller="Home" asp-action="startACause">Start a cause</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" asp-area="" asp-controller="User" asp-action="Index">My Causes</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="causes">Browse</a>
+              </li>              
+            </ul>
+
+            <ul class="navbar-nav mb-2 mb-lg-0 l">
+                @*<li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-user"></i>
+                        Account</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="login">Login</a></li>
+                      <li><a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="register">Sign Up</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" asp-area="" asp-controller="UserController" asp-action="logout">Logout</a></li>
+                    </ul>
+                  </li>*@
+                  <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="search">
+                        <i class="fa fa-search"></i>
+                    Search</a>
+                  </li>
+            </ul>
+            <partial name="_LoginPartial" />
+          </div>
+        </div>
+      </nav>
+        @*<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CourseWorkTwoNeyo</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                    </ul>
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>*@
+  
+
+            @RenderBody()
+     
+
+ 
+<footer class="text-center text-white" style="background-color: #f1f1f1;">
+        <!-- Grid container -->
+        <div class="container pt-4">
+          <!-- Section: Social media -->
+          <section class="mb-4">
+            <!-- Facebook -->
+            <a
+              class="btn btn-link btn-floating btn-lg text-dark m-1"
+              href="#!"
+              role="button"
+              data-mdb-ripple-color="dark"
+              ><i class="fa fa-facebook-f"></i
+            ></a>
+      
+            <!-- Twitter -->
+            <a
+              class="btn btn-link btn-floating btn-lg text-dark m-1"
+              href="#!"
+              role="button"
+              data-mdb-ripple-color="dark"
+              ><i class="fa fa-twitter"></i
+            ></a>
+      
+            <!-- Google -->
+            <a
+              class="btn btn-link btn-floating btn-lg text-dark m-1"
+              href="#!"
+              role="button"
+              data-mdb-ripple-color="dark"
+              ><i class="bi bi-google"></i>
+          </a>
+      
+            <!-- Instagram -->
+            <a
+              class="btn btn-link btn-floating btn-lg text-dark m-1"
+              href="#!"
+              role="button"
+              data-mdb-ripple-color="dark"
+              ><i class="fa fa-instagram"></i
+            ></a>
+      
+            <!-- Linkedin -->
+            <a
+              class="btn btn-link btn-floating btn-lg text-dark m-1"
+              href="#!"
+              role="button"
+              data-mdb-ripple-color="dark"
+              ><i class="fa fa-linkedin"></i
+            ></a>
+            <!-- Github -->
+            <a
+              class="btn btn-link btn-floating btn-lg text-dark m-1"
+              href="#!"
+              role="button"
+              data-mdb-ripple-color="dark"
+              ><i class="fa fa-github"></i
+            ></a>
+          </section>
+          <!-- Section: Social media -->
+        </div>
+        <!-- Grid container -->
+      
+        <!-- Copyright -->
+        <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+          © 2022 Copyright:
+          <a class="text-dark" >Akinbode Akinniyi Jeremiah</a>
+        </div>
+        <!-- Copyright -->
+      </footer>
+
+    @* <script src="~/lib/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script> *@
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.min.js" type="text/javascript"></script>
+
+    <script src="~/lib/jquery/dist/jquery.min.js" type="text/javascript"></script>
+    <script src="~/lib/jquery/dist/jquery.timeago.js" type="text/javascript"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+    
+    <!-- jQuery -->
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+	  <script src="~/lib/jquery/dist/jquery.bootstrap.wizard.js" type="text/javascript"></script>
+    <script src="~/lib/jquery/dist/jquery-2.2.4.min.js" type="text/javascript"></script>
+     <script src="~/lib/jquery/dist/jquery.timeago.js" type="text/javascript"></script>
+     <!-- Tinymce -->
+    <script src="~/lib/tinymce/js/tinymce.min.js" referrerpolicy="origin"></script>
+     <!-- Croppie -->
+    <script src="~/lib/croppie/js/croppie.min.js" referrerpolicy="origin"></script>
+     <!-- Custom JS -->
+    <script src="~/js/site.js" asp-append-version="true" type="text/javascript"></script>
+    	
+      <!-- data table JS
+		============================================ -->
+    <script src="~/lib/data-table/js/bootstrap-table.js"></script>
+    <script src="~/lib/data-table/js/tableExport.js"></script>
+    <script src="~/lib/data-table/js/data-table-active.js"></script>
+    <script src="~/lib/data-table/js/bootstrap-table-editable.js"></script>
+    <script src="~/lib/data-table/js/bootstrap-editable.js"></script>
+    <script src="~/lib/data-table/js/bootstrap-table-resizable.js"></script>
+    <script src="~/lib/data-table/js/colResizable-1.5.source.js"></script>
+    <script src="~/lib/data-table/js/bootstrap-table-export.js"></script>
+    	
+     <script>
+        $('.carousel').carousel({
+            interval: 5000 //changes the speed
+        })
+        </script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+

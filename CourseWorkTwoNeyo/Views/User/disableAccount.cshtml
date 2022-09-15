@@ -1,0 +1,36 @@
+@model Users
+@{
+    ViewData["Title"] = "Disable Account";
+}
+
+      <!--Main Body content -->
+      <section class="pt-5 pb-5" id="page-heard">
+        <div class="container">
+          <h1 id="cause-head">Disable My Account</h1>
+        </div>
+      </section>
+
+      <section class="pt-5 pb-5">
+        <div class="container">
+          <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="card border-0 shadow rounded-3 my-5">
+              <div class="card-body p-4 p-sm-5">
+                <h6><b>Are you sure you want to disable your account ?</b></h6>
+                <p>You will not be able to login or follow the causes you care so much about. 
+                  But if you sign a new cause anytime in the futue with your existing email, 
+                  your account will be reactivated.
+                </p>
+                <div class="image-center">
+                   <form method="post" asp-action="disableAccount">
+                      <input type="text" class="form-control" asp-for="Disabled" value="1" hidden required>
+                  <button type="submit" class="btn btn-danger">Disable My Account</button>
+              <a asp-controller="User" asp-action="settings" asp-route-id="@Model.Id" class="btn btn-primary fw-bold" type="submit">Back To Settings</a>
+                </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--End of Main Body content -->
+    

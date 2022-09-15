@@ -1,0 +1,74 @@
+@using CourseWorkTwoNeyo.Models
+@using System.Web
+@using Microsoft.AspNetCore;
+@model CourseWorkTwoNeyo.Models.databaseVM2
+@{
+    ViewData["Title"] = "Cause Comments";
+}
+
+      <!--Main Body content -->
+      <section class="pt-5 pb-5">
+        <div class="container">
+          <h2><b>Cause Title</b></h2><br>
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" asp-controller="Causes" asp-action="viewCause" asp-route-id="@ViewBag.causeID"><i class="fa fa-eye"></i> Cause Details</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" asp-controller="Causes" asp-action="comments" asp-route-id="@ViewBag.causeID"><i class="fa fa-comment"></i> Comments</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" asp-controller="Causes" asp-action="updates" asp-route-id="@ViewBag.causeID"><i class="bi bi-bookmark-plus-fill"></i> Updates</a>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="pt-5 pb-5">
+        <div class="container">
+          <div class="col-sm-9 col-md-7 col-lg-9 mx-auto">
+            <h2><b>Reason for signing</b></h2><br>
+            <p>See why other supporters are signing, why this petition is important to them, and share your reason for signing (this will mean a lot to the starter of the petition).</p> <br> 
+            @foreach(var obj in Model.CausesStarted2){
+                        @:<div class="col-md-12">
+                            @:<div class="card">
+                                @:<div class="card-body">
+                                    @:<div class="col-sm-12">
+                                        <div class="" style="float:left">
+                                            <img src="@obj.userList.UserPhoto" alt="Avatar" class="avatar">
+                                        </div>
+                                        @:<div style="float:left">
+                                            @:<span class="suptext2">
+                                                <b>
+                                                    @obj.userList.Name<br />
+                                                </b>
+                                                <span class="supsigned"><time class="timeago" datetime="@obj.commentList.PostDate"></time></span>
+                                            @:</span>
+                                        @:</div>
+                                    @:</div><br /><br /><br />
+                                    <p style="float:left">@obj.commentList.Content</p>
+                                @:</div>
+                                <div class="card-footer make-plain">
+                                    <div class="col-sm-6 set-left">
+                                        <span > 
+                                            @if(obj.userList.Id == ViewBag.userID){<a asp-controller="Causes" asp-action="deleteComment" asp-route-id="@obj.commentList.Id"><i class="bi bi-trash-fill"></i></a>}
+                                        </span>
+                                    </div>
+                                    <div class="col-sm-6 set-right">
+                                        <span>
+                                            <i class="fa fa-heart countlike" id="count-like"> @obj.commentList.LikeCount</i>
+                                        </span>
+                                    </div>
+                                </div>
+                           @:</div>
+                        @:</div><br />
+                       }  
+            <br>
+              <div class="supfoot">
+                <a href="comments.html" class="list-group-item list-group-item-action"><b>View More Comments</b></i></a>
+              </div>
+          </div>
+        </div>
+      </section>
+      <!--End of Main Body content -->
+      

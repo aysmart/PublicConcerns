@@ -1,0 +1,51 @@
+@model Causes
+@{
+    ViewData["Title"] = "Search Cause";
+}
+
+      <!--Main Body content -->
+      <section class="pt-5 pb-5" id="page-heard">
+        <div class="container">
+          <h1 id="cause-head">Search Causes</h1>
+        </div>
+      </section>
+      
+      <section class="pt-5 pb-5">
+        <div class="container" >
+          <div class="justify-content-center align-items-center">
+              <form method="post">
+              <div class="col-md-12" >
+                  <div class="search"> <i class="fa fa-search"></i> <input type="text" asp-for="Title" class="form-control" placeholder="Have a question? Ask Now"> <button type="submit" class="btn btn-primary">Search</button> </div>
+              </div>
+              </form>
+          </div>
+        </div>
+      </section>
+
+      <section class="pt-5 pb-5">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+                  @foreach(var obj in ViewBag.searchResult)
+              {
+                <div class="col">
+                  <div class="card">
+                    <a class="remove-decor" asp-controller="User" asp-action="causeDashboard" asp-route-id="@obj.causeList.Id">
+                        <img src="@obj.causeList.CauseBanner" class="card-img-top" height="50%" alt="cause 1">
+                        <div class="card-body">
+                        <h5 class="card-title">@obj.causeList.Title</h5>
+                        <p class="card-text">@obj.causeList.PlainContent.Substring(0 , 200)...</p>
+                        <h6><b>@obj.userList.Name</b></h6>
+                        </div>
+                    </a>
+                    <div class="card-footer">
+                        <small class="text-muted" id="card-footer-left"> <i class="fa fa-users"></i> @obj.causeList.SigCount supporters</small>
+                        <small class="text-muted"id="card-footer-right"><i class="fa fa-clock-o"></i> Last updated <time class="timeago" datetime="@obj.causeList.PostDate"></time></small>
+                    </div>
+                </div>
+                </div>  
+            }
+            <br>
+            <input type="submit" value="Show More" id="spanbtn"/>
+        </div>
+    </section>
+      <!--End of Main Body content -->

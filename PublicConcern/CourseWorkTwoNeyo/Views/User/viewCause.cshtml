@@ -1,0 +1,158 @@
+@using CourseWorkTwoNeyo.Models
+@using System.Web
+@using Microsoft.AspNetCore;
+@model CourseWorkTwoNeyo.Models.databaseVM2
+@{
+    ViewData["Title"] = "View Cause";
+}
+
+      <!--Main Body content -->
+      <section class="pt-5 pb-5">
+        <div class="container">
+          <ul class="nav nav-tabs">
+             <li class="nav-item">
+              <a class="nav-link" aria-current="page" asp-controller="User" asp-action="causeDashboard" asp-route-id="@ViewBag.causeId"><i class="fa fa-arrow-left"></i> Go to my cause dashboard</a>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="pt-5 pb-5">
+        <div class="container">
+          <div class="row">
+            <div class="column col-md-8">
+                @foreach(var obj in Model.CausesSigned2){
+              <div class="col-md-12">
+                <img src="@obj.causeList.CauseBanner" width="100%" alt=""><br />
+                <b><i class="fa fa-user"></i> @obj.userList.Name     <i class="bi bi-bullseye"></i> @obj.causeList.Targeted</b>
+                <h2><b>@obj.causeList.Title</b></h2>
+                @Html.Raw(HttpUtility.HtmlDecode(@obj.causeList.Content))
+              </div><br />}
+              <div class="col-md-12"> 
+                <div class="card">
+                  <div class="card-body">
+                      <h2><b>Reason for signing</b></h2><br />
+                      <p>See why other supporters are signing, why this petition is important to them, and share your reason for signing (this will mean a lot to the starter of the petition).</p> <br /> 
+                      @foreach(var obj in Model.CausesStarted2){
+                        @:<div class="col-md-12">
+                            @:<div class="card">
+                                @:<div class="card-body">
+                                    @:<div class="col-sm-12">
+                                        <div class="" style="float:left">
+                                            <img src="@obj.userList.UserPhoto" alt="Avatar" class="avatar">
+                                        </div>
+                                        @:<div style="float:left">
+                                            @:<span class="suptext2">
+                                                <b>
+                                                    @obj.userList.Name<br />
+                                                </b>
+                                                <span class="supsigned"><time class="timeago" datetime="@obj.commentList.PostDate"></time></span>
+                                            @:</span>
+                                        @:</div>
+                                    @:</div><br /><br /><br />
+                                    <p style="float:left">@obj.commentList.Content</p>
+                                @:</div>
+                                <div class="card-footer make-plain">
+                                    <div class="col-sm-6 set-left">
+                                        <span > 
+                                            @if(obj.userList.Id == ViewBag.userID){<a asp-controller="Causes" asp-action="deleteComment" asp-route-id="@obj.commentList.Id"><i class="bi bi-trash-fill"></i></a>}
+                                        </span>
+                                    </div>
+                                    <div class="col-sm-6 set-right">
+                                        <span>
+                                            <i class="fa fa-heart countlike" id="count-like"> @obj.commentList.LikeCount</i>
+                                        </span>
+                                    </div>
+                                </div>
+                           @:</div>
+                        @:</div><br />
+                       }
+                        <div class="supfoot">
+                          <a asp-controller="Causes" asp-action="comments" asp-route-id="@ViewBag.causeID" class="list-group-item list-group-item-action"><b>View More Comments</b></a>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div><br />
+            <div class="column col-md-4">
+              <div class="col-md-12"> 
+                <div class="card">
+                  <div class="card-body">
+                    <div class="progress">
+                    @foreach(var obj in Model.CausesSigned2){
+                                    int goal = (obj.causeList.SigGoal - obj.causeList.SigCount);
+                                    double SigPercent = ((double)obj.causeList.SigCount / (double)obj.causeList.SigGoal) * 100;
+                                    int SigPercent1 = (int) Math.Ceiling(SigPercent);
+                                    //@SigPercent1;
+                               
+                      <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{@SigPercent1}%" aria-valuemin="0" aria-valuemax="100" style="width:@SigPercent1%">@(obj.causeList.SigCount) of @obj.causeList.SigGoal</div>
+                    @:</div>
+                      <p><b>@obj.causeList.SigCount have signed.</b> Let’s get to @obj.causeList.SigGoal!</p> 
+                     } 
+                    <hr>
+                    @foreach(var obj in Model.signatureList2)
+                    {
+                        @:<div class="col-sm-12">
+                         <div class="" style="float:left">
+                        <img src="@obj.userList.UserPhoto" alt="Avatar" class="avatar">
+                      </div>
+                      @:<div style="float:left">
+                        @:<span class="suptext2">@obj.userList.Name<br></b><span class="supsigned">signed <time class="timeago" datetime="@obj.signatureList.SignDate"></span></span>
+                      @:</div>
+                      @:</div><br><br><br>
+                    @:<div>
+                      <br /><br />
+                    }
+                    <hr>
+                    @foreach(var obj in Model.CausesSigned2)
+                    {
+                        if(ViewBag.Signed!=0)
+                        {
+                            <div class="col-md-12 position-relative" id="signDiv">
+                    <p>You have signed to this cause. Kindly share with your friends and relative through the share link or the direct share share link to the underlisted social media of your choice.</p>
+                  </div>
+                        }
+                        else
+                        {
+
+                     <div class="col-md-12 position-relative" id="signDiv">
+                    <input type="text" hidden id="CauseIdText" value="@obj.causeList.Id" />
+                    <textarea class="textarea" id="SignMsg" placeholder="I'm singing this cause because...(optional)" id="" rows="2"></textarea>
+                    <a id="btnSet" class="btn btn-outline-dark"><b>Sign This Cause</b></a> 
+                  </div>
+                        }
+                    }
+                  </div>
+                </div>
+              </div><br />
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-body">
+                    <h2><b>Share This Cause</b></h2>
+                    <p>kindly help share this cause across all your social media accounts and make this cause gain the attention of the public.</p>
+                     @foreach(var obj in Model.CausesSigned2)
+                    {
+                    <div class="justify-content-center align-items-center">
+                      <div class="col-md-12" >
+                          <div class="search"> <i class="fa fa-link"></i> <input type="text" id="causeLink" class="form-control" readonly value="https://localhost:7047/Causes/viewCause/@obj.causeList.Id"> <button class="btn btn-dark" id="shareLinkBtn" onclick="copyLink()">Copy</button> </div>
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="share-socials">
+                      <a target="_blank" href="https://www.facebook.com/sharer.php?u=https://localhost:7047/Causes/viewCause/@obj.causeList.Id&t=@obj.causeList.Title" class="btn btn-primary"><i class="fa fa-facebook"></i></a>
+                      <a target="_blank" href="https://plus.google.com/share?url=https://localhost:7047/Causes/viewCause/@obj.causeList.Id&text=@obj.causeList.Title" class="btn btn-danger"><i class="fa fa-google-plus"></i></a>
+                      <a target="_blank" href="https://twitter.com/share?url=https://localhost:7047/Causes/viewCause/@obj.causeList.Id&text=@obj.causeList.Title" class="btn btn-info"><i class="fa fa-twitter"></i></a>
+                      <a target="_blank" href="mailto:?subject=@obj.causeList.Title&amp;body=Check out this site https://localhost:7047/Causes/viewCause/@obj.causeList.Id." class="btn btn-primary"><i class="fa fa-envelope"></i></a>
+                      <a target="_blank" href="https://api.whatsapp.com/send?text=@obj.causeList.Title https://localhost:7047/Causes/viewCause/@obj.causeList.Id" class="btn btn-success"><i class="bi bi-whatsapp"></i></a>
+                      <a target="_blank" href="https://www.linkedin.com/shareArticle?url=https://localhost:7047/Causes/viewCause/@obj.causeList.Id&title=@obj.causeList.Title" class="btn btn-primary"><i class="fa fa-linkedin"></i></a>
+                    </div>
+                    }
+                  </div>
+                </div>
+              </div><br />
+          </div>
+        </div>
+      </section>
+      <!--End of Main Body content -->
+      
+  

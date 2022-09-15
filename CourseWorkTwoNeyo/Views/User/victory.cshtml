@@ -1,0 +1,42 @@
+@{
+    ViewData["Title"] = "Declare Victory";
+}
+
+      <!--Main Body content -->
+      <section class="pt-5 pb-5">
+        <div class="container">
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" asp-controller="User" asp-action="causeDashboard" asp-route-id="@ViewBag.causeId"><i class="fa fa-arrow-left"></i> Go to my cause dashboard</a>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="pt-5 pb-5">
+        <div class="container">
+          <div class="row mid-mid">
+            <div class="col-md-12 ">
+              <div class="card update-sec" id="jerry123">
+                <div class="card-body">
+                  <div class="col-sm-6" style="float:right">
+                      @foreach(var obj in @ViewBag.cause){
+                    <span class="numbss">@obj.causeList.SigCount</span><span class="sup-text"><br>Signatures</span>
+                }  
+                </div>
+                  <div class="col-sm-6">
+                    <span class="numbss">@ViewBag.comCount</span><span class="sup-text"><br>Responses</span>
+                  </div><br><br> 
+                  <p> Cause starters achieve victory when their desired change happens, or when they come to an alternate agreement with the decision maker.</p>
+                  <p>Did you and the decision maker come to an agreement? </p>
+                  <form method="post" asp-action="declareVictory" asp-route-id="@ViewBag.causeId">
+                      <button type="submit" class="btn btn-success">Declare Victory</button>
+                  </form>
+                </div>
+              </div>
+            </div><br>
+          </div>
+        </div>
+      </section>
+      <!--End of Main Body content -->
+  

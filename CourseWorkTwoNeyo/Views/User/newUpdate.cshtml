@@ -1,0 +1,54 @@
+@model Updates
+@{
+    ViewData["Title"] = "Cause New Update";
+}
+
+      <!--Main Body content -->
+      <section class="pt-5 pb-5" id="page-heard">
+        <div class="container">
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" asp-controller="User" asp-action="causeDashboard" asp-route-id="@ViewBag.causeId"><i class="fa fa-arrow-left"></i> Go to my cause dashboard</a>
+            </li>
+          </ul>
+        </div>
+      </section>
+      <!--End of Main Body content -->
+      
+      
+      <section class="pt-5 pb-5">
+        <div class="container">
+          <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <h1><b>Update your supporters</b></h1><br>
+          <form class="row g-3" method="post">
+            <div class="col-md-12 position-relative">
+              <label asp-for="Headline" class="form-label"><b>Headline</b></label>
+              <input asp-for="Headline" type="text" class="form-control" value="" required>
+              <input asp-for="CauseId" type="text" class="form-control"  hidden value="@ViewBag.causeId">
+            </div>
+            <div class="col-md-12 position-relative">
+              <label class="form-label"><b>Your latest development</b></label>
+              <textarea id="editor" class="form-control"></textarea>
+            </div>
+            <div class="image-center">
+              <textarea asp-for="Content" id="displayContent" hidden></textarea>
+              <button type="submit" class="btn btn-danger">Post Update</button>
+            </div>
+          </form>
+          </div>
+        </div>
+     </section>
+     
+     <!-- Script to Activate the Carousel -->
+     <script>
+        $('#validationTooltip04').on('change', function(){
+          //alert("posps")hh
+          if (this.value=="Others"){
+            $('#other-fill').html('<div class="col-md-12 position-relative"><label for="validationTooltip01" class="form-label"><b>If Others, Then Specify</b></label><input type="text" class="form-control" id="validationTooltip01" value="Common Wealth Policies" required><div class="valid-tooltip">Looks good!</div></div>');
+          }
+          else{
+            $('#other-fill').html("");
+          }
+        })
+
+        </script>

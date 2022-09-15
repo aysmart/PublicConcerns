@@ -1,0 +1,149 @@
+@model Users
+@{
+    ViewData["Title"] = "Edit Profile";
+}
+      <!--Main Body content -->
+      <section class="pt-5 pb-5" id="page-heard">
+        <div class="container">
+          <h1 id="cause-head">
+            <i class="fa fa-user"></i> Your Profile <br>
+          
+        </h1>
+        </div>
+      </section>
+
+
+       <section class="pt-5 pb-5">
+        <div class="container">
+            <div class="image-center">    
+             <label class="photocrop">
+            <img class="rounded-circle z-depth-2" id="round-profile-img" alt="100x100" width="100" height="100" src='@Model.UserPhoto'
+          data-holder-rendered="true"><br><a href=""></a><br>
+          <a id="upload-text">Change Image</a><br>
+          <input type="file" id="item-img" hidden>
+          <input type="text" id="img-width" value="100" hidden>
+          <input type="text" id="img-height" value="100" hidden>
+          </label>
+          </div>
+          <form class="row g-3" asp-action="profileEdit" method="post">
+            <div class="col-md-4">
+              <label  asp-for="Name" class="form-label">Full Name</label>
+              <input type="text" class="form-control" asp-for="Name" id="validationServer02" value="@Model.Name" required>
+              <div class="valid-feedback">
+                Looks good!
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label asp-for="UserEmail" class="form-label">Email</label>
+              <input type="email" class="form-control" asp-for="UserEmail" value="@Model.UserEmail" required>
+              <span asp-validation-for="UserEmail" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+              <label asp-for="UserCity" class="form-label">City</label>
+              <input type="text" class="form-control" asp-for="UserCity" id="validationServer02" value="@Model.UserCity" required>
+              <div class="valid-feedback">
+                Looks good!
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label asp-for="UserState" class="form-label">State</label>
+              <input type="text" class="form-control" asp-for="UserState" id="validationServer02" value="@Model.UserState" required>
+              <div class="valid-feedback">
+                Looks good!
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label asp-for="UserCountry" class="form-label">Country</label>
+              <input type="text" class="form-control" asp-for="UserCountry" id="validationServer02" value="@Model.UserCountry" required>
+              <div class="valid-feedback">
+                Looks good!
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label asp-for="UserName" class="form-label">Username</label>
+              <div class="input-group">
+                <span class="input-group-text" id="inputGroupPrepend3">@@</span>
+                <input type="text" class="form-control" asp-for="UserName" value="@Model.UserName" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required><br />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+                <input type="text" class="form-control" asp-for="EmailConfirm" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" value="@Model.EmailConfirm" hidden required>
+@*                <input type="text" class="form-control" asp-for="UserPhoto" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" value="@Model.UserPhoto" hidden required>
+*@                @*<input type="text" class="form-control" asp-for="RegDate" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" value="03/26/2022" hidden required>*@
+                <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                  Please choose a username.
+                </div>
+              </div>
+            </div>
+            <div class="col-md-8 mb-3">
+                  <label asp-for="AboutMe" class="form-label">About Me</label>
+                  <textarea asp-for="AboutMe" class="form-control" id="exampleFormControlTextarea1" rows="3">@Model.AboutMe</textarea>
+            </div>
+            <div class="col-md-4">
+              <label asp-for="UserPhone" class="form-label">Phone Number</label>
+              <input type="text" class="form-control" placeholder="e.g +2348067952628" asp-for="UserPhone" id="validationServer02" value="@Model.UserPhone" required>
+              <div class="valid-feedback">
+                Looks good!
+              </div>
+            </div>
+             <div class="col-md-4">
+              <input type="password" class="form-control"  asp-for="UserPassword" id="validationServer02" value="@Model.UserPassword" hidden required>
+              <div class="valid-feedback">
+                Looks good!
+              </div>
+            </div>
+           @* <div class="col-md-3">
+              <label class="form-label">Password</label>
+              <input type="password" class="form-control" asp-for="UserPassword" id="confirmPass1" aria-describedby="validationServer083Feedback" required>
+              <span id="StrengthDisp" class="badge displayBadge">Weak</span>
+            </div>
+            <div class="col-md-3" >
+              <label  asp-for="UserPassword" class="form-label">Verify Password</label>
+              <input type="password" asp-for="UserPassword" class="form-control" id="confirmPass2" aria-describedby="validationServer03Feedback" required>
+              <span id="StrengthDisp2" class="badge displayBadge">Weak</span>*@
+              @*<div  class="text-danger" id="showpass"></div>*@
+            
+           <textarea asp-for="UserPhoto" id="CauseBannerBox" value="@Model.UserPhoto" hidden required></textarea>
+            <div class="col-12">
+              <button id="updateBtn" class="btn btn-primary" type="submit">Update Profile</button>
+              <a asp-controller="User" asp-action="settings" asp-route-id="@Model.Id" class="btn btn-danger fw-bold" type="submit">Back To Settings</a>
+            </div>
+          </form>
+        </div>
+      </section>
+      <!--End of Main Body content -->
+
+       <!-- Bootstrap Modal -->
+    <div class="modal fade" id="cropImagePop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="false">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">
+          <?=multiLanguage( "Edit Foto" , "Edit Photo" )?></h4>
+      </div>
+      <div class="modal-body">
+            <div id="upload-demo" class="center-block"></div>
+      </div>
+       <div class="modal-footer">
+<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+<button type="button" id="cropImageBtn" class="btn btn-primary">Crop</button>
+</div>
+        </div>
+      </div>
+    </div>
+  <!-- End of Modals -->
+
+<script>
+ // $('#upload-text').click(function() {
+    //alert("I was here")
+//    $('#user-img').click();
+//  })
+  
+
+//  $('#user-img').change(function() {
+    // var userImg = document.getElementById('user-img');
+  //  var cirleImg = document.getElementById('round-profile-img');
+  //  var filename =$('#user-img').val().replace(/C:\\fakepath\\/i, '');
+   // cirleImg.src = "~/lib/images/users/" + filename;
+   // alert(filename)
+//  })
+</script>

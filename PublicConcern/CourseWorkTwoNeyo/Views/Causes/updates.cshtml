@@ -1,0 +1,112 @@
+@using CourseWorkTwoNeyo.Models
+@using System.Web
+@using Microsoft.AspNetCore;
+@model CourseWorkTwoNeyo.Models.databaseVM2
+@{
+    ViewData["Title"] = "Cause Updates";
+    var count = 0;
+}
+
+      <!--Main Body content -->
+      <section class="pt-5 pb-5">
+        <div class="container">
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" asp-controller="Causes" asp-action="viewCause" asp-route-id="@ViewBag.causeID"><i class="fa fa-eye"></i> Cause Details</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" asp-controller="Causes" asp-action="comments" asp-route-id="@ViewBag.causeID"><i class="fa fa-comment"></i> Comments</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" asp-controller="Causes" asp-action="updates" asp-route-id="@ViewBag.causeID"><i class="bi bi-bookmark-plus-fill"></i> Updates</a>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="pt-5 pb-5">
+        <div class="container">
+            <div class="row">
+          <div class="col-sm-10 col-md-7 col-lg-10 mx-auto">
+            <h2><b>Recent News</b></h2><br>
+            <div class="column col-md-8" style="float:left;">
+              <div class="card">
+                <div class="card-body">
+                  
+                               
+                                    @foreach(var obj in Model.CausesUpdates)
+                                    {
+                                        <h4><b>@obj.updatesList.Headline</b></h4><br />
+                                        @Html.Raw(HttpUtility.HtmlDecode(@obj.updatesList.Content))
+                                        <br/> <br/>
+                                    }
+                                
+                                    @if (count==0)
+                                    {
+                                        <div class="image-center">
+                                          <p>There are no updates on this cause.</p>
+                                        </div>
+                                    }
+
+               
+                
+              </div>
+            </div><br>
+            </div>   
+            <div class="column col-md-4" style="float:left; padding-left:10px;">
+               <h2><b>Join The Conversation</b></h2><br />
+               <div class="col-md-12 position-relative" id="ComDiv">
+                    <input type="text" hidden id="CauseIdText" value="@ViewBag.causeID" />
+                    <textarea class="textarea" id="ComMsg" placeholder="Type your comments here." rows="2"></textarea>
+                    <a id="CommentBtn" class="btn btn-outline-dark pull-right"><b>Comment</b></a> 
+                  </div><br /><br />
+               @foreach(var obj in Model.CausesStarted2){
+                        @:<div class="col-md-12">
+                            @:<div class="card">
+                                @:<div class="card-body">
+                                    @:<div class="col-sm-12">
+                                        <div class="" style="float:left">
+                                            <img src="@obj.userList.UserPhoto" alt="Avatar" class="avatar">
+                                        </div>
+                                        @:<div style="float:left">
+                                            @:<span class="suptext2">
+                                                <b>
+                                                    @obj.userList.Name<br />
+                                                </b>
+                                                <span class="supsigned"><time class="timeago" datetime="@obj.commentList.PostDate"></time></span>
+                                            @:</span>
+                                        @:</div>
+                                    @:</div><br /><br /><br />
+                                    <p style="float:left">@obj.commentList.Content</p>
+                                @:</div>
+                                <div class="card-footer make-plain">
+                                    <div class="col-sm-6 set-left">
+                                        <span > 
+                                            @if(obj.userList.Id == ViewBag.userID){<a asp-controller="Causes" asp-action="deleteComment" asp-route-id="@obj.commentList.Id"><i class="bi bi-trash-fill"></i></a>}
+                                        </span>
+                                    </div>
+                                    <div class="col-sm-6 set-right">
+                                        <span>
+                                            <i class="fa fa-heart countlike" id="count-like"> @obj.commentList.LikeCount</i>
+                                        </span>
+                                    </div>
+                                </div>
+                           @:</div>
+                        @:</div><br />
+                       }
+                        <div class="supfoot">
+                          <a asp-controller="Causes" asp-action="comments" asp-route-id="@ViewBag.causeID" class="list-group-item list-group-item-action"><b>View More Comments</b></a>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div><br />
+              <div class="supfoot">
+                <a href="comments.html" class="list-group-item list-group-item-action"><b>View More Comments</b></i></a>
+              </div>
+          </div>
+        </div>
+        </div>
+      </section>
+      <!--End of Main Body content -->
+ 

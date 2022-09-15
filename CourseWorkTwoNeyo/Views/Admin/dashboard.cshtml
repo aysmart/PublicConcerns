@@ -1,0 +1,133 @@
+@{
+    ViewData["Title"] = "Admin Dashboard";
+    var count = 0;
+}
+      
+      
+      <!--Main Body content -->
+      <section class="pt-5 pb-5">
+        <div class="container">
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" asp-controller="Admin" asp-action="dashboard"><i class="fa fa-eye"></i> Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page"  asp-controller="Admin" asp-action="userAccounts"><i class="fa fa-comment"></i> User Accounts</a>
+            </li>
+          </ul>
+        </div>
+      </section>
+      
+      <section class="pt-5 pb-5">
+        <div class="container">
+          <div class="row">   
+            
+            <div class="col-md-3 dashboard-box">
+              <div class="card">
+                <div class="card-body">
+                  <i class="fa fa-bullseye "></i> 
+                  <h2><b>@ViewBag.causeCount</b></h2>
+                  <h4><b>Causes</b></h4>
+                </div>
+              </div>
+            </div><br>  
+            <div class="col-md-3 dashboard-box">
+              <div class="card">
+                <div class="card-body">
+                  <i class="fa fa-users"></i>
+                  <h2><b>@ViewBag.userCount</b></h2>
+                  <h4><b>Users</b></h4>
+                </div>
+              </div> 
+            </div><br>
+            <div class="col-md-3 dashboard-box">
+              <div class="card">
+                <div class="card-body">
+                  <i class="fa fa-check-circle-o"></i>
+                  <h2><b>@ViewBag.victoryCount</b></h2>
+                  <h4><b>Victories</b></h4>
+                </div>
+              </div>  
+            </div>
+            <div class="col-md-3 dashboard-box">
+              <div class="card">
+                <div class="card-body">
+                  <i class="fa fa-thumbs-down"></i>
+                  <h2><b>@ViewBag.disabledCount</b></h2>
+                  <h4><b>Disabled Users</b></h4>
+                </div>
+              </div>
+            </div><br><br><br> 
+            <!-- Static Table Start -->
+            <div class="data-table-area mg-tb-15">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="sparkline13-list">
+                      <div class="sparkline13-hd">
+                        <div class="main-sparkline13-hd">
+                          <h1>Causes <span class="table-project-n">Posts</span> Table</h1>
+                        </div>
+                      </div>
+                      <div class="sparkline13-graph">
+                        <div class="datatable-dashv1-list custom-datatable-overright">
+                          <div id="toolbar">
+                            <select class="form-control">
+                              <option value="">Export Basic</option>
+                              <option value="all">Export All</option>
+                              <option value="selected">Export Selected</option>
+                            </select>
+                          </div>
+                          <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
+                          data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+                          <thead>
+                            <tr>
+                              <th >S/N</th>
+                              <th >User Email</th>
+                              <th >Cause Title</th>
+                              <th >Cause Focus</th>
+                              <th >Cause Target</th>
+                              <th >Category</th>
+                              <th >Sign Goal</th>
+                              <th >Sign Count</th>
+                              <th >Views</th>
+                              <th >Shares</th>
+                              <th >Date Posted</th>
+                              <th >Action</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            @foreach(var obj in ViewBag.table)
+                            {
+                                count+=1;
+
+                            <tr>
+                                  <td>@count</td>
+                                  <td>@obj.userList.UserEmail</td>
+                                  <td>@obj.causeList.Title</td>
+                                  <td>@obj.causeList.Focus</td>
+                                  <td>@obj.causeList.Targeted</td>
+                                  <td>@obj.causeList.Category</td>
+                                  <td>@obj.causeList.SigGoal</td>
+                                  <td>@obj.causeList.SigCount</td>
+                                  <td>@obj.causeList.ViewCount</td>
+                                  <td>@obj.causeList.ShareCount</td>
+                                  <td>@obj.causeList.PostDate</td>
+                                  <td> <a class="btn btn-dark" asp-controller="Causes" asp-action="viewCause" asp-route-id="@obj.causeList.Id"><i class="fa fa-eye"></i>View</a> 
+                                       <a class="del_cause btn btn-danger" id="@obj.causeList.Id" onclick="delCause(@obj.causeList.Id)"><i class="bi bi-trash3-fill"></i>Delete</a>
+                                  </td>
+                            </tr>                                          
+                             }                                         
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Static Table End -->              
+        </div>
+      </section>
+      <!--End of Main Body content -->

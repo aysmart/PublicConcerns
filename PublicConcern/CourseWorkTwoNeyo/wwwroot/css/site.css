@@ -1,0 +1,272 @@
+/* html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+ */
+
+
+
+@media screen and (max-width: 768px) {
+  #prevailed {display: none;}
+  }
+#spanbtn, .textarea {
+  width:100%;
+}
+
+#card-footer-left {
+  float:left;
+}
+
+#card-footer-right {
+  float:right;
+}
+
+.remove-decor{
+  text-decoration: none; 
+  color:black;
+}
+
+#cause-head{
+  font-weight: bold;
+  text-align: center;
+}
+
+#page-heard{
+  background-color: #7e7e7e;
+  background-image:url("../images/pages/header-user-setting.jpg");
+
+}
+
+#page-user-head{
+  background-image:url("../images/pages/header-user-setting.jpg");
+  background-repeat: no-repeat;
+  background-size:cover;
+}
+
+.redu {
+  font-size: 16px;
+  font-weight: lighter;
+  font-style: italic !important;
+}
+
+.btn-login {
+  font-size: 0.9rem;
+  letter-spacing: 0.05rem;
+  padding: 0.75rem 1rem;
+}
+
+.btn-google {
+  background-color: #ea4335 !important;
+  color: white !important;
+}
+
+.btn-facebook {
+  color: white !important;
+  background-color: #3b5998 !important;
+}
+
+#user-locale {
+  font-size: 20px;
+}
+
+.arrow-right{
+  float: right;
+}
+
+.image-center{
+  text-align: center;
+}
+
+#upload-text {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+#disable-a {
+  cursor: pointer;
+}
+
+/* This is for the image preview modal */
+label.cabinet{
+display: block;
+cursor: pointer;
+}
+
+label.cabinet input.file{
+position: relative;
+height: 100%;
+width: auto;
+opacity: 0;
+-moz-opacity: 0;
+filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+margin-top:-30px;
+}
+
+label.photocrop {
+    display: block;
+    cursor: pointer;
+}
+label.image-center input.file {
+        position: relative;
+        height: 100%;
+        width: auto;
+        opacity: 0;
+        -moz-opacity: 0;
+        filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+        margin-top: -30px;
+}
+
+
+
+#upload-demo{
+width: 100%;
+height: 250px;
+padding-bottom:25px;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:weight@100;200;300;400;500;600;700;800&display=swap");
+
+.search {
+  position: relative;
+  box-shadow: 0 0 40px rgba(51, 51, 51, .1)
+}
+
+.search input {
+  height: 60px;
+  text-indent: 25px;
+  border: 2px solid #d6d4d4
+}
+
+.search input:focus {
+  box-shadow: none;
+  border: 2px solid rgb(45, 2, 53);
+}
+
+.search .fa-search {
+  position: absolute;
+  top: 20px;
+  left: 16px
+}
+
+.search .fa-link {
+  position: absolute;
+  top: 20px;
+  left: 16px
+}
+.search button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  height: 50px;
+  width: 110px;
+  background: rgb(93, 92, 93);
+}
+
+.share-socials i {
+  color: white !important;
+}
+
+.numbss {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: bolder;
+  font-size: 50px;
+  display:relative;
+}
+.supnum {
+  text-align: center;
+}
+
+.sup-text {
+  font-weight: bold;
+  position: block;
+}
+
+.more-text{
+  text-align: center;
+  font-size: 30px;
+}
+
+.supfoot {
+  text-align: center;   
+}
+
+.avatar {
+  vertical-align: middle;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.supsigned {
+  color:#7e7e7e;
+  font-weight: lighter;
+}
+
+.suptext {
+  padding-left: 25px;
+    font-weight: bold;
+}
+
+.mid-mid {
+  align-items:center; 
+  text-align:center;
+}
+
+.dec-vic {
+    color: rgb(255, 0, 0) ;
+}
+
+.make-plain {
+    background-color: white !important;
+}
+
+.set-left{
+    text-align: right;
+    float:right;
+}
+
+.set-right{
+  text-align: left;
+}
+
+.suptext2 {
+  float:left; 
+  text-align: left;
+  padding-left: 10px;
+  font-weight: bold;
+}
+
+.count-like {
+    cursor: pointer;
+}
+
+.dashboard-box {
+    text-align: center;
+    padding: 3px;
+}
+
+.passwordInput {
+    margin-top: 5%;
+    text-align: center;
+}
+
+.displayBadge {
+    margin-top: 5%;
+    display: none;
+    text-align: center;
+}

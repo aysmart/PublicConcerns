@@ -1,0 +1,108 @@
+@{
+    ViewData["Title"] = "Browse Causes";
+}
+
+      <!--Main Body content -->
+      <section class="pt-5 pb-5" id="page-heard">
+        <div class="container">
+          <h1 id="cause-head">Discover Causes</h1>
+        </div>
+      </section>
+      <section class="pt-5 pb-5" id="prevailed">
+        <div class="container">
+          <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+              <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Trending</button>
+              <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Recent</button>
+              <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Victories</button>
+            </div>
+          </nav>
+          <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+              <section class="pt-5 pb-5">
+                <div class="container">
+                    <div class="row row-cols-1 row-cols-md-2 g-4">
+                          @foreach(var obj in ViewBag.trending)
+              {
+                <div class="col">
+                  <div class="card">
+                    <a class="remove-decor" asp-controller="User" asp-action="causeDashboard" asp-route-id="@obj.causeList.Id">
+                        <img src="@obj.causeList.CauseBanner" class="card-img-top" height="50%" alt="cause 1">
+                        <div class="card-body">
+                        <h5 class="card-title">@obj.causeList.Title</h5>
+                        <p class="card-text">@obj.causeList.PlainContent.Substring(0 , 200)...</p>
+                        <h6><b>@obj.userList.Name</b></h6>
+                        </div>
+                    </a>
+                    <div class="card-footer">
+                        <small class="text-muted" id="card-footer-left"> <i class="fa fa-users"></i> @obj.causeList.SigCount supporters</small>
+                        <small class="text-muted"id="card-footer-right"><i class="fa fa-clock-o"></i> Last updated <time class="timeago" datetime="@obj.causeList.PostDate"></time></small>
+                    </div>
+                </div>
+                </div>  
+            }
+                    <br>
+                    <input type="submit" value="Show More" id="spanbtn"/>
+                </div>
+            </section>
+            </div>
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+              <section class="pt-5 pb-5">
+                <div class="container">
+                    <div class="row row-cols-1 row-cols-md-2 g-4">
+                          @foreach(var obj in ViewBag.recent)
+              {
+                <div class="col">
+                  <div class="card">
+                    <a class="remove-decor" asp-controller="User" asp-action="causeDashboard" asp-route-id="@obj.causeList.Id">
+                        <img src="@obj.causeList.CauseBanner" class="card-img-top" height="50%" alt="cause 1">
+                        <div class="card-body">
+                        <h5 class="card-title">@obj.causeList.Title</h5>
+                        <p class="card-text">@obj.causeList.PlainContent.Substring(0 , 200)...</p>
+                        <h6><b>@obj.userList.Name</b></h6>
+                        </div>
+                    </a>
+                    <div class="card-footer">
+                        <small class="text-muted" id="card-footer-left"> <i class="fa fa-users"></i> @obj.causeList.SigCount supporters</small>
+                        <small class="text-muted"id="card-footer-right"><i class="fa fa-clock-o"></i> Last updated <time class="timeago" datetime="@obj.causeList.PostDate"></time></small>
+                    </div>
+                </div>
+                </div>  
+            }
+                    <br>
+                    <input type="submit" value="Show More" id="spanbtn"/>
+                </div>
+            </section>
+            </div>
+            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+              <section class="pt-5 pb-5">
+                <div class="container">
+                    <div class="row row-cols-1 row-cols-md-2 g-4">
+                          @foreach(var obj in ViewBag.victory)
+              {
+                <div class="col">
+                  <div class="card">
+                    <a class="remove-decor" asp-controller="User" asp-action="causeDashboard" asp-route-id="@obj.causeList.Id">
+                        <img src="@obj.causeList.CauseBanner" class="card-img-top" height="50%" alt="cause 1">
+                        <div class="card-body">
+                        <h5 class="card-title">@obj.causeList.Title</h5>
+                        <p class="card-text">@obj.causeList.PlainContent.Substring(0 , 200)...</p>
+                        <h6><b>@obj.userList.Name</b></h6>
+                        </div>
+                    </a>
+                    <div class="card-footer">
+                        <small class="text-muted" id="card-footer-left"> <i class="fa fa-users"></i> @obj.causeList.SigCount supporters</small>
+                        <small class="text-muted"id="card-footer-right"><i class="fa fa-clock-o"></i> Last updated <time class="timeago" datetime="@obj.causeList.PostDate"></time></small>
+                    </div>
+                </div>
+                </div>  
+            }
+                    <br>
+                    <input type="submit" value="Show More" id="spanbtn"/>
+                </div>
+            </section>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--End of Main Body content -->

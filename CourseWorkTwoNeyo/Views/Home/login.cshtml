@@ -1,0 +1,62 @@
+@model Users
+@{
+    ViewData["Title"] = "User Login";
+}
+
+      <!--Main Body content -->
+      <section class="pt-5 pb-5" id="page-heard">
+        <div class="container">
+          <h1 id="cause-head">Sign In</h1>
+        </div>
+      </section>
+
+      <section class="pt-5 pb-5">
+        <div class="container">
+          <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="card border-0 shadow rounded-3 my-5">
+              <div class="card-body p-4 p-sm-5">
+                <form method="post" asp-action="login">
+                  <div class="d-grid mb-2">
+                    <button class="btn btn-google btn-login text-uppercase fw-bold" type="submit">
+                      <i class="bi bi-google"></i> Sign in with Google
+                    </button>
+                  </div>
+                  <div class="d-grid">
+                    <button class="btn btn-facebook btn-login text-uppercase fw-bold" type="submit">
+                      <i class="fa fa-facebook-f me-2"></i> Sign in with Facebook
+                    </button>
+                  </div>
+
+                   <span asp-validation-for="UserEmail" class="text-danger"></span>
+                  <hr class="my-4">
+                  <div class="form-floating mb-3">
+                    <input type="email" asp-for="UserEmail" required class="form-control" id="floatingInput" placeholder="name@example.com">
+                    <label for="floatingInput">Email address</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input type="password" asp-for="UserPassword" required class="form-control" id="floatingPassword" placeholder="Password">
+                    <label for="floatingPassword">Password</label>
+                  </div>
+    
+                  <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" value="" id="rememberPasswordCheck">
+                    <label class="form-check-label" for="rememberPasswordCheck">
+                      Remember password
+                    </label>
+                  </div>
+                  <div class="d-grid">
+                    <button type="submit" class="btn btn-primary btn-login text-uppercase fw-bold">Sign
+                      in</button>
+                  </div> 
+                  <br>
+                </form>
+                <div class="d-grid">
+                  <a asp-controller="Home" asp-action="register" class="btn btn-secondary btn-login text-uppercase fw-bold" type="submit">Sign
+                    Up</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--End of Main Body content -->
